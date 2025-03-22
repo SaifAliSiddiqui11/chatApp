@@ -12,7 +12,6 @@ document.getElementById("reviewForm").addEventListener("submit", async (e) => {
   try {
     if (parseInt(rating) > 3) {
       // 4 ya 5 stars
-      // Comment ko clipboard mein copy karo
       if (comment) {
         await navigator.clipboard.writeText(comment);
         alert(
@@ -21,7 +20,6 @@ document.getElementById("reviewForm").addEventListener("submit", async (e) => {
       } else {
         alert("Please proceed to leave your rating on Google.");
       }
-      // Redirect to Google My Business
       window.location.href = "https://g.page/r/CV1PXs1LM8vlEBM/review"; // Apna GMB link daal
     } else {
       // 3, 2, ya 1 star
