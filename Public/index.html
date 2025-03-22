@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MealJet Restaurant Feedback</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
+      }
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      select,
+      textarea,
+      button {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>MealJet Restaurant Feedback</h1>
+    <form id="reviewForm">
+      <label>Rate us (1-5 stars):</label>
+      <select name="rating" id="rating" required>
+        <option value="">Select Rating</option>
+        <option value="5">5 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="2">2 Stars</option>
+        <option value="1">1 Star</option>
+      </select>
+      <textarea
+        name="comment"
+        placeholder="Your feedback (optional)"
+      ></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <script src="script.js"></script>
+  </body>
+</html>
