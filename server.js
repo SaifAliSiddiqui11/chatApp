@@ -5,15 +5,13 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
-app.use(express.static("public")); // Serve frontend files
+app.use(express.static("public"));
 
-// Twilio setup
 const twilioClient = twilio(
   process.env.TWILIO_SID,
   process.env.TWILIO_AUTH_TOKEN
 );
 
-// Nodemailer setup
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -22,15 +20,16 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// POST endpoint for feedback
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 app.post("/submit-feedback", (req, res) => {
   const { rating, comment } = req.body;
 
-  if (rating < 4) {
-    // Save feedback (for now, log to console; later add database)
+  if (parseInt(rating) <= 3) {
     console.log("Low Rating Feedback:", { rating, comment });
 
-    // Send SMS notification via Twilio
     twilioClient.messages
       .create({
         body: `Low rating alert: ${rating} stars - ${comment || "No comment"}`,
@@ -40,7 +39,6 @@ app.post("/submit-feedback", (req, res) => {
       .then(() => console.log("SMS sent"))
       .catch((err) => console.error("SMS error:", err));
 
-    // Send email notification
     transporter
       .sendMail({
         from: process.env.EMAIL_USER,
@@ -55,6 +53,5 @@ app.post("/submit-feedback", (req, res) => {
   res.status(200).send("Feedback received");
 });
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
