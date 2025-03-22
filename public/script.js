@@ -20,7 +20,7 @@ document.getElementById("reviewForm").addEventListener("submit", async (e) => {
       } else {
         alert("Please proceed to leave your rating on Google.");
       }
-      window.location.href = "https://g.page/r/CV1PXs1LM8vlEBM/review"; // Apna GMB link daal
+      window.location.href = "https://g.page/r/CW1uFoCffnSaEBM/review"; // Apna GMB link daal
     } else {
       // 3, 2, ya 1 star
       const response = await fetch("/submit-feedback", {
